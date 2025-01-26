@@ -102,3 +102,78 @@ fn test_shadowing() {
     let name: &str = "Azka Fathurrahman"; // Variable kedua dengan nama yang sama
     println!("Name: {}", name); // Name: Azka Fathurrahman
 }
+
+/**
+ * DATA TYPES
+ */
+
+ /**
+  * Integer & Floating Point
+  * Di rust ada beberapa tipe data integer dan floating point
+    * i8, i16, i32, i64, i128, isize - signed integer (bilangan bulat dengan tanda) bisa positif dan negatif
+    * u8, u16, u32, u64, u128, usize - unsigned integer (bilangan bulat tanpa tanda) hanya positif
+    * f32, f64 - floating point (bilangan desimal)
+
+  * Misalnya tidak menambahkan tipe data maka secara otomatis integer akan menjadi i32 dan floating point akan menjadi f64
+  * Jika ingin merubah kita perlu explicit menambahkan tipe data seperti contoh dibawah ini menggunakan : {tipe_data}
+  */
+#[test]
+fn test_number_float() {
+    let number: i8 = 10; // i8 adalah tipe data integer
+    println!("Number: {}", number);
+
+    let number: f32 = 10.5; // f32 adalah tipe data floating point
+    println!("Number: {}", number);
+
+    let number: f64 = 10.5; // f64 adalah tipe data floating point
+    println!("Number: {}", number);
+}
+
+/**
+ * Konversi Tipe Data
+ * Rush bisa melakukan konversi tipe data dengan menggunakan keyword as
+ * 
+ * Misalnya number: i8 = 10; // i8 adalah tipe data integer
+ * Maka kita bisa mengkonversi tipe data tersebut menjadi tipe data lain seperti i16, i32, i64, i128, isize
+ * Jika tipe data yang dituju lebih kecil maka akan terjadi overflow atau kelebihan kapasitas
+ */
+#[test]
+fn test_convert_data_type() {
+    // Contoh 1
+    let number: i16 = 1000; // Gunakan nilai yang sesuai range i16
+    let number_converted: i32 = number as i32;
+    println!("Number: {}", number_converted);
+
+    // Contoh 2
+    let small_number: i8 = 100; // Nilai dalam range i8
+    let bigger_number: i16 = small_number as i16;
+    println!("Converted number: {}", bigger_number);
+}
+
+/**
+ * Numeric Operations
+ * Rust memiliki beberapa operator matematika seperti penjumlahan, pengurangan, perkalian, pembagian, modulus
+ * 
+ * Penjumlahan: +
+ * Pengurangan: -
+ * Perkalian: *
+ * Pembagian: /
+ * Modulus: %
+ */
+#[test]
+fn test_numeric_operations() {
+    let number1: i32 = 10;
+    let number2: i32 = 5;
+
+    let sum: i32 = number1 + number2;
+    let sub: i32 = number1 - number2;
+    let mul: i32 = number1 * number2;
+    let div: i32 = number1 / number2;
+    let modu: i32 = number1 % number2;
+
+    println!("Sum: {}", sum); // 15
+    println!("Sub: {}", sub); // 5
+    println!("Mul: {}", mul); // 50
+    println!("Div: {}", div); // 2
+    println!("Modu: {}", modu); // 0
+}
