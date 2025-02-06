@@ -380,3 +380,112 @@ fn test_tuple_unit() {
     let result = process_data(5); // memanggil function process_data
     println!("Result: {:?}", result); // tapi result berisi (), karena function tidak mengembalikan nilai
 }
+
+/**
+ * Array
+ * Rust memiliki tipe data array yang digunakan untuk menyimpan beberapa nilai dengan tipe data yang sama, dan jumlah data sudah ditentukan saat deklarasi
+ * Array bersifat fixed size, artinya jumlah data di array tidak bisa diubah setelah diinisialisasi
+ */
+#[test]
+fn test_array() {
+    let numbers: [i32; 5] = [1, 2, 3, 4, 5]; // Array dengan 5 data bertipe i32
+    println!("Numbers: {:?}", numbers); // Numbers: [1, 2, 3, 4, 5]
+
+    let names: [&str; 3] = ["Azka", "Fathurrahman", "Rahman"]; // Array dengan 3 data bertipe &str
+    println!("Names: {:?}", names); // Names: ["Azka", "Fathurrahman", "Rahman"]
+
+    // Mengakses data di array
+    let first_number: i32 = numbers[0];
+    let second_name: &str = names[1];
+    println!("First Number: {}", first_number); // 1
+    println!("Second Name: {}", second_name); // Fathurrahman
+}
+
+/**
+ * Array Mutable
+ * Rust memiliki tipe data array yang bersifat mutable, artinya kita bisa mengubah data di dalam array
+ * Untuk membuat array mutable kita perlu menambahkan keyword mut sebelum deklarasi array
+ */
+#[test]
+fn test_array_mutable() {
+    let mut numbers: [i32; 5] = [1, 2, 3, 4, 5]; // Array dengan 5 data bertipe i32
+    numbers[0] = 10; // Mengubah data array dengan index 0
+    println!("Numbers: {:?}", numbers); // Numbers: [10, 2, 3, 4, 5]
+}
+
+/**
+ * Array Len
+ * Rust memiliki method len() yang digunakan untuk mendapatkan panjang array
+ * Tipe data usize, yang digunakan untuk menyimpan panjang data, akan mengikuti panjang data di komputer kita apa 32 bit atau 64 bit
+ */
+#[test]
+fn test_array_len() {
+    let numbers: [i32; 5] = [1, 2, 3, 4, 5]; // Array dengan 5 data bertipe i32
+    let len: usize = numbers.len(); // Mendapatkan panjang array
+    println!("Len: {}", len); // 5
+}
+
+/**
+ * Two Dimensional Array
+ * Rust memiliki tipe data array dua dimensi yang digunakan untuk menyimpan data dalam bentuk baris dan kolom
+ * Array dua dimensi digunakan untuk menyimpan data yang lebih kompleks seperti matriks, papan catur, dan data yang membutuhkan baris dan kolom
+ */
+#[test]
+fn test_two_dimensional_array() {
+    let matrix: [[i32; 3]; 4] = [
+        [1, 2, 3],    // Baris 1
+        [4, 5, 6],    // Baris 2
+        [7, 8, 9],    // Baris 3
+        [10, 11, 12], // Baris 4
+    ]; // Array dua dimensi dengan 3 baris dan 3 kolom bertipe i32
+    println!("Matrix: {:?}", matrix); // Matrix: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+
+    // Mengakses data di array dua dimensi
+    let first_row: [i32; 3] = matrix[0]; // Mengambil baris pertama
+    let first_number: i32 = matrix[0][0]; // Mengambil data di baris pertama dan kolom pertama
+    println!("First Row: {:?}", first_row); // [1, 2, 3]
+    println!("First Number: {}", first_number); // 1
+}
+
+/**
+ * Constant
+ * Rust memiliki keyword const yang digunakan untuk membuat constant, artinya nilai dari constant tidak bisa diubah setelah diinisialisasi
+ * Constant harus memiliki tipe data, dan tidak bisa menggunakan let
+ * Constant biasanya digunakan untuk menyimpan nilai yang tidak berubah seperti PI, PHI, dan nilai lain yang tetap
+ * Constant menggunakan huruf besar dan menggunakan underscore (_) untuk memisahkan kata
+ */
+#[test]
+fn test_constant() {
+    const PI: f32 = 3.14; // Constant PI dengan tipe data f32
+    const RADIUS: i32 = 10; // Constant RADIUS dengan tipe data i32
+
+    const CIRCLE_AREA: f32 = PI * (RADIUS * RADIUS) as f32; // Menghitung luas lingkaran
+    const CIRCLE_CIRCUMFERENCE: f32 = 2.0 * PI * RADIUS as f32; // Menghitung keliling lingkaran
+
+    println!("Luas Lingkaran: {}", CIRCLE_AREA); // 314.0
+    println!("Keliling Lingkaran: {}", CIRCLE_CIRCUMFERENCE); // 62.8
+
+    const NAME: &str = "Azka Fathurrahman"; // Constant NAME dengan tipe data &str
+    println!("Name: {}", NAME); // Azka Fathurrahman
+}
+
+/**
+ * Scope
+ * Rust memiliki konsep scope yang digunakan untuk menentukan dimana variable bisa diakses
+ * Variable yang dideklarasikan di dalam scope tertentu hanya bisa diakses di dalam scope tersebut
+ * Rust menggunakan curly braces {} untuk menandai scope
+ * Variable yang dideklarasikan di luar scope bisa diakses di dalam scope
+ */
+#[test]
+fn test_scope() {
+    let name: &str = "Azka"; // Variable name di luar scope
+
+    {
+        // Inner scope
+        let age: i32 = 25; // Variable age di dalam scope
+        println!("Name: {}", name); // Variable name bisa diakses di dalam scope
+        println!("Age: {}", age); // Variable age bisa diakses di dalam scope
+    }
+
+    // println!("Age: {}", age); // Variable age tidak bisa diakses di luar scope
+}
